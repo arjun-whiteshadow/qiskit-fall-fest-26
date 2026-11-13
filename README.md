@@ -2,12 +2,12 @@
 
 ## Team Information
 
-- **Team Name:** 
+- **Team Name:** Cdevi Code
 - **Team Members:**
-  - 
-  - 
-- **Selected Challenge:** <!-- 1 = VQE, 2 = QAOA, 3 = Dynamics -->
-- **Difficulty Level:** <!-- Beginner | Intermediate | Advanced -->
+  - Arjun Sharma Poudel
+  - Shanti Thapa
+- **Selected Challenge:** 1 - VQE , Ground State Energy of Molecules
+- **Difficulty Level:** Intermediate 
 
 ## Submission Files
 
