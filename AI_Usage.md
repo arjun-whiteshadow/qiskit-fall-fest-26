@@ -59,3 +59,40 @@ we reviewed or decided ourselves.
   - Qiskit's right-to-left qubit ordering
   - chemical accuracy (1.6 mHa)
 - **Team ownership:** _(to fill in: which parts we re-derived or re-explained in our own words)_
+
+## Entry 3: Phase 2 notebook (UCCSD ansatz) (2026-11-13)
+- **Task:** Build and validate the parameterised circuit (ansatz) that VQE will optimise.
+- **AI contribution:**
+  - Wrote sections 5–10 and the Phase 2 Markdown:
+    - the variational principle and the VQE loop;
+    - UCCSD vs hardware-efficient ansatz trade-offs;
+    - a hand-built Hartree–Fock circuit;
+    - generation of single and double excitations, mapped with the same Jordan–Wigner mapper;
+    - the UCCSD circuit assembled from `PauliEvolutionGate`s;
+    - transpiled hardware cost;
+    - an energy-landscape plot.
+  - Installed `matplotlib` 3.10.9.
+- **Design decisions made by the AI (we must be able to justify these):**
+  - **Hand-built UCCSD instead of Qiskit Nature's `UCCSD` and `HartreeFock` classes.** In Qiskit 2.2
+    those classes are built on the deprecated `NLocal` / `BlueprintCircuit` and print deprecation
+    warnings. The AI found this with a test script that turned every warning into an error.
+  - **`.decompose()` before `Statevector` simulation.** Without it, scipy prints
+    `SparseEfficiencyWarning` notices when building the matrix of a `PauliEvolutionGate`.
+- **Bugs caught during development:**
+  - A docstring written with escaped quotes caused a `SyntaxError` on the first run.
+  - A loop variable named `theta` overwrote the circuit's `ParameterVector`; it was renamed `theta_test`.
+  - The first landscape plot hid the 20 mHa gap between the HF and exact lines; a zoomed panel was added.
+- **Verification:**
+  - The HF circuit energy equals PySCF's HF energy.
+  - θ = 0 reproduces HF.
+  - The hand-built ansatz matches the library `UCCSD` to 1e-14 Ha at 5 random parameter sets.
+  - The decomposed double-excitation gate matches an exact `scipy.linalg.expm` to fidelity 1 − 6e-15.
+  - The notebook runs in a fresh kernel with no errors and no stderr output.
+- **Concepts explained by AI:**
+  - the variational principle
+  - why T − T† gives a unitary
+  - Brillouin's theorem (single excitations do not mix directly with HF)
+  - why commuting Pauli terms make the evolution-gate decomposition exact
+  - why the landscape repeats every π (a global sign has no physical effect)
+  - CNOT count as the main hardware cost
+- **Team ownership:** _(to fill in)_
