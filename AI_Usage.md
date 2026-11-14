@@ -180,3 +180,16 @@ we reviewed or decided ourselves.
   - the meaning of θ₂ → −π/4
   - basis-set limitations vs algorithm limitations
 - **Team ownership:** _(to fill in)_
+
+## Entry 6: Notebook clean-up, explanations moved to docs/ (2026-11-13)
+- **Task:** Keep only minimal Markdown in `challenge.ipynb` and move the detailed explanations to separate files.
+- **AI contribution:**
+  - Wrote a script that copied every explanatory Markdown cell **verbatim** into 4 files:
+    `docs/01_molecule_and_hamiltonian.md`, `02_ansatz.md`, `03_running_vqe.md` and
+    `04_noise_and_bond_curve.md`.
+  - Replaced the notebook Markdown with short section headers and 1–2 line summaries that link to the
+    docs. The notebook went from 58 to 49 cells, and its Markdown from ~500 lines to ~67.
+  - Removed the "Reading the output" cells from the notebook; they now live in the docs.
+  - Did not change any code cell.
+- **Verification:** The notebook was re-executed in a fresh kernel with no errors and no stderr output.
+- **Team ownership:** _(to fill in)_

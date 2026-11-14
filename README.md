@@ -12,6 +12,7 @@
 ## Submission Files
 
 - `challenge.ipynb` — solution notebook
+- `docs/` — detailed explanations for each notebook phase (01–04)
 - `Written_Report.pdf` — written report
 - `Presentation_Slides.pdf` — presentation slides
 
