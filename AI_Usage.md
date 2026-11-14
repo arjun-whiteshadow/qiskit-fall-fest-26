@@ -134,3 +134,49 @@ we reviewed or decided ourselves.
   - the ground state as 98.76% |0101⟩ + 1.24% |1010⟩, and why that admixture is correlation
   - state fidelity
 - **Team ownership:** _(to fill in)_
+
+## Entry 5: Phase 4 notebook (shot noise, noisy VQE, potential-energy curve, conclusions) (2026-11-13)
+- **Task:** Make the study realistic (finite measurement shots) and add chemistry insight (bond breaking).
+- **AI contribution:**
+  - Wrote sections 16–18, the Conclusions, and the final results cell:
+    - shot-noise statistics with 1/√N scaling;
+    - noisy VQE comparing SLSQP, COBYLA and SPSA (3 seeded trials each);
+    - an H₂ potential-energy curve over 25 bond lengths, with HF/FCI/VQE comparison and the optimal θ₂
+      plotted against bond length;
+    - limitations and extensions.
+  - Added "How to Run" and "Results Summary" sections to the README.
+- **Investigation by AI (important for Q&A):** The AI read the source of `qiskit_aer.primitives.EstimatorV2`
+  and found two problems:
+  - It does **not** sample shots. It adds Gaussian noise N(E, precision) to the exact value.
+  - With a fixed `seed_simulator` it adds the **same** noise on every call.
+
+  The notebook therefore uses `qiskit.primitives.BackendEstimatorV2` on `AerSimulator`. That combination
+  samples real bitstrings, and a new seed per call keeps the noise independent and the notebook reproducible.
+- **Design decisions made by the AI:**
+  - **PySCF FCI as the reference along the curve, not the lowest eigenvalue of the qubit Hamiltonian.**
+    In Fock space that eigenvalue could come from a different electron number or spin. A check showed
+    both agree here.
+  - **The same ansatz at every geometry.** The excitation operators do not depend on the bond length.
+  - **Warm-started SLSQP along the curve.**
+  - **Seeded SPSA** (`algorithm_globals.random_seed`).
+  - **Noisy runs judged by "true" error.** The final angles are re-evaluated exactly, which avoids the
+    winner's-curse bias.
+- **Verification:**
+  - Ran the whole notebook twice in fresh kernels: identical outputs, no errors, no stderr, ~80 s.
+  - Checked every Markdown claim against the printed numbers:
+    - SLSQP fails at 400–800 mHa.
+    - COBYLA lands at 0.85–3.1 mHa.
+    - SPSA lands at 0.01–0.09 mHa.
+    - HF error goes from ~8 to 278 mHa along the curve.
+    - Equilibrium bond length is 0.75 Å on the grid.
+    - θ₂ → −π/4 as the bond stretches.
+- **Concepts explained by AI:**
+  - shots and measurement groups (qubit-wise commuting)
+  - 1/√N statistical scaling
+  - why finite-difference gradients fail under noise
+  - how SPSA works
+  - the winner's curse on reported minima
+  - static correlation and why HF fails at bond breaking
+  - the meaning of θ₂ → −π/4
+  - basis-set limitations vs algorithm limitations
+- **Team ownership:** _(to fill in)_
