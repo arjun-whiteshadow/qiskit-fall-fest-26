@@ -1,0 +1,10 @@
+# Tested with Python 3.10.6 on macOS.
+# qiskit is pinned below 2.3: qiskit 2.6.x fails to import on Python 3.10.6 (typing bug in that Python release).
+qiskit==2.2.3
+qiskit-aer==0.17.2
+qiskit-nature==0.8.0
+qiskit-algorithms==0.4.0
+pyscf==2.15.0
+numpy==2.2.6
+scipy==1.15.3
+jupyter
