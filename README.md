@@ -24,6 +24,9 @@ pip install -r requirements.txt
 jupyter notebook challenge.ipynb   # then Kernel -> Restart & Run All (~1.5 min)
 ```
 
+On qBraid (or any fresh environment): open `challenge.ipynb` and run all cells. The first cell
+installs any missing packages automatically (first run ~5-10 min).
+
 ## Results Summary (H₂, STO-3G, Jordan–Wigner, UCCSD)
 
 | Quantity | Value |
@@ -31,7 +34,7 @@ jupyter notebook challenge.ipynb   # then Kernel -> Restart & Run All (~1.5 min)
 | Qubits / Pauli terms / ansatz parameters | 4 / 15 / 3 |
 | Exact ground-state energy (R = 0.735 Å) | −1.137306 Ha |
 | Ideal VQE error | ~1e-11 mHa (100% of correlation energy) |
-| Noisy VQE (SPSA, 10k shots/group), true error | ~0.04 mHa |
+| Noisy VQE (SPSA, 10k shots/group), true error | < 0.1 mHa (mean ≈ 0.03 over 3 trials) |
 | Potential-energy curve (25 geometries), max VQE error | ~3e-8 mHa |
 
 Chemical accuracy (1.6 mHa) is reached in all three settings.

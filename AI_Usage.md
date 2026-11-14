@@ -193,3 +193,21 @@ we reviewed or decided ourselves.
   - Did not change any code cell.
 - **Verification:** The notebook was re-executed in a fresh kernel with no errors and no stderr output.
 - **Team ownership:** _(to fill in)_
+
+## Entry 7: Code-only notebook for qBraid, tested in a fresh environment (2026-11-13)
+- **Task:** Remove all Markdown cells from `challenge.ipynb` (keep comments only) so it runs easily on qBraid.
+- **AI contribution:**
+  - Turned each Markdown cell into a short comment header (`# ---- Section N: ... ----`) at the top of
+    the code cell it described. The notebook now has 26 code cells and 0 Markdown cells.
+  - Added a first cell that installs any missing packages (pinned versions) into the running kernel.
+  - Switched the kernel setting to the standard `python3`.
+  - Did not change any code-cell logic. The full explanations remain in `docs/`.
+- **Verification:**
+  - **Local venv:** ran in a fresh kernel with no errors and no stderr output.
+  - **Fresh environment:** created an empty Python 3.10 environment with no qiskit, pyscf or even numpy.
+    The notebook ran headlessly there: the first cell installed everything, and all 26 cells ran with
+    no errors, no warnings and no kernel restart (~8.5 min including installs).
+  - **Reproducibility:** results were identical in both environments, including the seeded noisy runs.
+  - The README's noisy-SPSA figure was updated to the current run (mean ≈ 0.03 mHa; it was 0.04 in an
+    earlier notebook version).
+- **Team ownership:** _(to fill in)_
