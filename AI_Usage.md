@@ -226,4 +226,5 @@ we reviewed or decided ourselves.
 - **Honesty note:** The report's AI-usage section discloses this help, as the AI policy requires.
 - **Verification:** Every number in the report and slides was copied from the current notebook output,
   then checked by reading the rendered PDFs.
-- **Team ownership:** _(to fill in: what we edited, what we can explain, who presents which slides)_
+- **Team ownership:** _
+we brainstrorm the project and we are responsible for each line of the code as per hackanthon rules.
