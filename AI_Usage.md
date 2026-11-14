@@ -96,3 +96,41 @@ we reviewed or decided ourselves.
   - why the landscape repeats every π (a global sign has no physical effect)
   - CNOT count as the main hardware cost
 - **Team ownership:** _(to fill in)_
+
+## Entry 4: Phase 3 notebook (running VQE) (2026-11-13)
+- **Task:** Run VQE end-to-end, compare optimizers, verify the result against the exact energy.
+- **AI contribution:** Wrote sections 11–15 and the Phase 3 Markdown:
+  - the Estimator primitive, PUBs and ISA transpilation;
+  - a hand-written VQE cost function that records each evaluation;
+  - an optimizer comparison (SLSQP, L-BFGS-B, COBYLA);
+  - convergence plots;
+  - interpretation of the optimal state (composition and fidelity);
+  - a cross-check with `qiskit_algorithms.VQE`;
+  - a final results table.
+- **Anti-hallucination check:** A test script ran every API in our venv before any notebook code was
+  written:
+  - `StatevectorEstimator`, `generate_preset_pass_manager`, `AerSimulator`, Aer `EstimatorV2`
+  - `SparsePauliOp.apply_layout`
+  - `qiskit_algorithms.VQE`
+
+  The script ran with warnings turned into errors, so none of these calls emits a warning.
+- **Design decisions made by the AI:**
+  - **Our own `scipy.optimize.minimize` loop instead of only the library `VQE`.** Every step is
+    visible, which helps in the Q&A. The library is kept as a cross-check.
+  - **Ideal statevector estimator in Phase 3.** It tests the algorithm separately from shot noise.
+  - **θ = 0 (Hartree–Fock) as the starting point.**
+  - **Shot-noise experiments deferred to Phase 4.** A test showed noisy runs can stop early or report
+    a biased (too low) minimum. They need careful treatment, such as re-evaluating the final angles.
+- **Verification:**
+  - All 3 optimizers land within 1e-7 mHa of the exact energy.
+  - The VQE state has fidelity 1.0000000000 with the exact ground-state eigenvector.
+  - Our optimal angles match the library VQE result.
+  - The notebook runs in a fresh kernel with no errors or stderr output.
+- **Concepts explained by AI:**
+  - Estimator primitives and PUBs
+  - ISA circuits and `apply_layout`
+  - gradient-based vs gradient-free optimizers
+  - why the number of evaluations is the real hardware cost
+  - the ground state as 98.76% |0101⟩ + 1.24% |1010⟩, and why that admixture is correlation
+  - state fidelity
+- **Team ownership:** _(to fill in)_
