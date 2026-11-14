@@ -211,3 +211,19 @@ we reviewed or decided ourselves.
   - The README's noisy-SPSA figure was updated to the current run (mean ≈ 0.03 mHa; it was 0.04 in an
     earlier notebook version).
 - **Team ownership:** _(to fill in)_
+
+## Entry 8: Written report, slides, figures and Q&A prep (2026-11-14)
+- **Task:** Draft the written report (3–4 pages) and the slides, following the hackathon brochure rules,
+  in simple language for non-technical listeners. The talk is 5 minutes; the brochure allows 7 + 3 Q&A.
+- **AI contribution:**
+  - Read the brochure and schedule PDFs.
+  - Re-ran the notebook to export raw results, then made 6 large-font figures in `submission/figures/`.
+  - Wrote `submission/report.html`, rendered to `Written_Report.pdf` (4 pages). Its sections are the
+    ones the rules require: problem, approach and reasoning, results, unsuccessful attempts, AI usage.
+  - Wrote `submission/slides.html`, rendered to `Presentation_Slides.pdf` (8 slides).
+  - Wrote `submission/Speaker_Script_and_QA.md`: a 5-minute script and 25 likely judge questions with
+    answers.
+- **Honesty note:** The report's AI-usage section discloses this help, as the AI policy requires.
+- **Verification:** Every number in the report and slides was copied from the current notebook output,
+  then checked by reading the rendered PDFs.
+- **Team ownership:** _(to fill in: what we edited, what we can explain, who presents which slides)_
